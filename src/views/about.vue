@@ -15,10 +15,10 @@
                 </div>
             </div>
             <div class="col col-md-3 col-lg-4">
-                <img src="/public/about-1.jpg" class="w-100 pic1">
+                <img src="/about-1.jpg" class="w-100 pic1">
             </div>
             <div class="col col-md-3 col-lg-4">
-                <img src="/public/about-2.jpg" class="w-100 pic2">
+                <img src="/about-2.jpg" class="w-100 pic2">
             </div>
         </div>
     </div>

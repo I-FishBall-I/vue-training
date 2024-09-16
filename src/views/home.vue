@@ -18,7 +18,7 @@
                     </div>
                 </div>
                 <div class="col-12 col-lg-5 offset-lg-2">
-                    <img src="/public/Background.jpg" class="w-100">
+                    <img src="/Background.jpg" class="w-100">
                 </div>
             </div>
         </div>

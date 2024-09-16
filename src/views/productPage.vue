@@ -39,7 +39,7 @@
                 <div class="card mb-3" style="max-width:70rem;">
                     <div class="row g-0">
                         <div class="col-md-5">
-                            <img src="/public/shop-juice1.jpg" class="img-fluid rounded-start">
+                            <img src="/shop-juice1.jpg" class="img-fluid rounded-start">
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
