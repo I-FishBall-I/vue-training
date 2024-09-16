@@ -37,15 +37,13 @@
               <a class="nav-link" href="#">Log In</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" @click="cartHandler"><font-awesome-icon
-                  :icon="['fas', 'cart-shopping']" /></a>
+              <a class="nav-link" href="#"><font-awesome-icon :icon="['fas', 'cart-shopping']" /></a>
             </li>
           </ul>
         </div>
       </div>
     </div>
   </nav>
-
 
   <div class="content">
     <router-view />
