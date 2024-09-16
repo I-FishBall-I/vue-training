@@ -1,0 +1,86 @@
+/* Font */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Kalam:wght@300;400;700&display=swap');
+
+
+* {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-family: 'roboto', 'Noto Sans TC', sans-serif;
+}
+
+:root {
+  --main-color: #d5e9c7;
+  --font-color: #3d5a23;
+}
+.coupon {
+  background: var(--main-color);
+}
+/* navbar */
+.navbar {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+.navbar-brand {
+  font-family: 'Kalam', 'cursive';
+  font-weight: 700;
+  font-size: 2.5rem;
+  color: var(--font-color);
+  margin-right: 40px;
+}
+.navbar-nav li {
+  margin: 0 20px;
+}
+.navbar-nav li a {
+  text-decoration: none;
+}
+.navbar-nav li a:hover {
+  color: var(--font-color);
+}
+
+/* main */
+.main {
+  background: #f9f9f9;
+}
+.main .item h1 {
+  font-size: 4rem;
+  line-height: 1.5;
+  margin-bottom: 20px;
+  color: var(--font-color);
+}
+.main .item p {
+  font-size: 1.5rem;
+  line-height: 1.5;
+  margin-bottom: 40px;
+}
+.main a {
+  font-size: 1.5rem;
+  text-decoration: none;
+  color: #fff;
+  background-color: var(--font-color);
+  padding: 5px;
+  border-radius: 40px;
+  text-align: center;
+  border: 1px solid var(--font-color);
+  transition: 0.5s;
+}
+.main a:hover {
+  border: 1px solid var(--font-color);
+  color: var(--font-color);
+  background-color: #fff;
+}
+
+/* footer */
+.footer {
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
+}
+footer .item {
+  font-size: 1rem;
+  line-height: 1.5;
+  padding: 40px;
+}
+footer .item li {
+  margin: 10px;
+}

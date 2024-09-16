@@ -1,0 +1,20 @@
+[
+    {
+        "id": 1,
+        "title": "Total Care",
+        "price": "$50.00",
+        "src": "/public/Subscription-juice1.jpg"
+    },
+    {
+        "id": 2,
+        "title": "Detox Plan",
+        "price": "$30.00",
+        "src": "/public/Subscription-juice2.jpg"
+    },
+    {
+        "id": 3,
+        "title": "Full-Day Cleanses",
+        "price": "$40.00",
+        "src": "/public/Subscription-juice3.jpg"
+    }
+]
