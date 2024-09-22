@@ -1,7 +1,6 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { useRoute } from 'vue-router';
-import cart from '../uiComponents/cart.vue';
 import { useCartState } from '../uiComponents/state';
 const store = useCartState();
 const route = useRoute();

@@ -1,7 +1,6 @@
 <script setup>
 import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router';
-import cart from '../uiComponents/cart.vue';
 import { useCartState } from '../uiComponents/state';
 const store = useCartState();
 
@@ -49,7 +48,7 @@ const addHandler = () => {
     const currentCart = JSON.parse(sessionStorage.getItem('cart')) || [];
     const cartItem = {
         id: currentCart.length + 1,
-        category:"subscription",
+        category: "subscription",
         title: productDetail.value.title,
         price: productDetail.value.price,
         quantity: 1,
@@ -113,7 +112,7 @@ onMounted(() => {
                                 <select class="form-select" v-model="selectedOption">
                                     <option v-for="(option, key) in productDetail.option" :key="key" :value="key">{{
                                         option
-                                    }}
+                                        }}
                                     </option>
                                 </select>
                                 <button type="button" class="btn" @click="addHandler">Add to Cart</button>
