@@ -5,35 +5,35 @@ const store = useCartState();
 
 const cartData = ref([]);
 
-const sessionCart = ref(JSON.parse(sessionStorage.getItem('cart')) || []);
+const sessionCart = ref(JSON.parse(localStorage.getItem('cart')) || []);
 
 watch(sessionCart, (newVal) => {
     cartData.value = newVal;
 });
 
-// 監控 sessionStorage 並更新 sessionCart
+// 監控 localStorage 並更新 sessionCart
 window.addEventListener('storage', () => {
-    const updatedCart = JSON.parse(sessionStorage.getItem('cart') || []);
-    sessionCart.value = updatedCart; 
+    const updatedCart = JSON.parse(localStorage.getItem('cart') || []);
+    sessionCart.value = updatedCart;
 });
 
-const shopItems=computed(()=>{
+const shopItems = computed(() => {
     return cartData.value.filter(item => item.category === "shop");
 })
-const subscriptionItems=computed(()=>{
+const subscriptionItems = computed(() => {
     return cartData.value.filter(item => item.category === "subscription");
 })
 
 
 const deleteItem = async (id) => {
     cartData.value = cartData.value.filter(item => item.id !== id);
-    sessionStorage.setItem('cart', JSON.stringify(cartData.value));
+    localStorage.setItem('cart', JSON.stringify(cartData.value));
     window.dispatchEvent(new Event('storage'));
 }
 
 </script>
 <template>
-    <div class="cart" v-show="store.showCart && cartData.length > 0" v-if="cartData">
+    <div class="cart" v-show="store.showCart" v-if="cartData">
         <div class="row">
             <div class="col-12 z-index-3">
                 <button class="order-btn" @click="store.toggleCart('cart')"><font-awesome-icon
@@ -45,15 +45,14 @@ const deleteItem = async (id) => {
             <div class="col-2 title">單價</div>
             <div class="col-2 title">小計</div>
         </div>
-            <div class="row my-2" v-for="item in shopItems" :key="item.id">
-                <div class="col-3 cartMenu"><img :src="item.src" class="w-25 mx-2">{{ item.title }}</div>
-                <div class="col-2 cartMenu">{{ item.quantity }}</div>
-                <div class="col-2 cartMenu">{{ item.price }}</div>
-                <div class="col-2 cartMenu">{{ parseInt(item.quantity) * parseInt(item.price) }}</div>
-                <div class="col-2 cartMenu"><button class="btn btn-danger btn-sm"
-                        @click="deleteItem(item.id)">×</button>
-                </div>
+        <div class="row my-2" v-for="item in shopItems" :key="item.id">
+            <div class="col-3 cartMenu"><img :src="item.src" class="w-25 mx-2">{{ item.title }}</div>
+            <div class="col-2 cartMenu">{{ item.quantity }}</div>
+            <div class="col-2 cartMenu">{{ item.price }}</div>
+            <div class="col-2 cartMenu">{{ parseInt(item.quantity) * parseInt(item.price) }}</div>
+            <div class="col-2 cartMenu"><button class="btn btn-danger btn-sm" @click="deleteItem(item.id)">×</button>
             </div>
+        </div>
         <div class="row">
             <div class="col-12 sec-title">Subscription</div>
             <div class="col-3 title">品項</div>
@@ -61,15 +60,14 @@ const deleteItem = async (id) => {
             <div class="col-2 title">單價</div>
             <div class="col-2 title">小計</div>
         </div>
-            <div class="row my-2" v-for="item in subscriptionItems" :key="item.id">
-                <div class="col-3 cartMenu"><img :src="item.src" class="w-25 mx-2">{{ item.title }}</div>
-                <div class="col-2 cartMenu">{{ item.quantity }}</div>
-                <div class="col-2 cartMenu">{{ item.price }}</div>
-                <div class="col-2 cartMenu">{{ parseInt(item.quantity) * parseInt(item.price) }}</div>
-                <div class="col-2 cartMenu"><button class="btn btn-danger btn-sm"
-                        @click="deleteItem(item.id)">×</button>
-                </div>
+        <div class="row my-2" v-for="item in subscriptionItems" :key="item.id">
+            <div class="col-3 cartMenu"><img :src="item.src" class="w-25 mx-2">{{ item.title }}</div>
+            <div class="col-2 cartMenu">{{ item.quantity }}</div>
+            <div class="col-2 cartMenu">{{ item.price }}</div>
+            <div class="col-2 cartMenu">{{ parseInt(item.quantity) * parseInt(item.price) }}</div>
+            <div class="col-2 cartMenu"><button class="btn btn-danger btn-sm" @click="deleteItem(item.id)">×</button>
             </div>
+        </div>
         <div class="row">
             <div class="col-12 total-price">
                 <span>Total $ {{ cartData.reduce((total, item) => total + parseInt(item.price) *
@@ -99,7 +97,6 @@ const deleteItem = async (id) => {
     color: var(--font-color);
     margin: 10px 0;
     padding: 0 10px;
-    color: var(--font-color);
 }
 
 .title {
@@ -116,7 +113,7 @@ const deleteItem = async (id) => {
     margin: 10px 0;
 }
 
-.cartMenu {
+.cartMenu:not(:first-child) {
     display: flex;
     align-items: center;
     justify-content: center;

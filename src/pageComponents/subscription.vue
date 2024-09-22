@@ -20,8 +20,8 @@ onMounted(() => {
 <template>
     <div class="container">
         <div class="my-5 title">
-            <h1>Subscription</h1>
-            <p>Subscribe to any of our plans and select how often you want them delivered.</p>
+            <h1>訂閱方案</h1>
+            <p>訂閱我們的多種方案，自由選擇您想要的配送頻率，讓健康好滋味定期送到您家。</p>
         </div>
         <div class="row">
             <div class="col-12 col-lg-4" v-for="product in products" :key="product.id">
@@ -32,7 +32,7 @@ onMounted(() => {
                     </div>
                     <div class="txt">
                         <h2>{{ product.title }}</h2>
-                        <p>$  {{ product.price }}</p>
+                        <p>NTD $ {{ product.price }}</p>
                     </div>
                 </router-link>
             </div>
@@ -51,18 +51,21 @@ onMounted(() => {
     font-size: 1rem;
 }
 
-.row img {
+.pic img {
     border-radius: 10px;
 }
+.pic:hover img {
+    box-shadow: 0 0 15px rgba(61, 90, 35, 0.6);
+}
 
-.row .txt h2 {
+.txt h2 {
     font-size: 1.6rem;
     font-weight: 700;
     margin: 20px 0;
     color: var(--font-color);
 }
 
-.row .txt p {
+.txt p {
     font-size: 1rem;
     font-weight: 400;
     padding: 0 0 20px 10px;

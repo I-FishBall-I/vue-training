@@ -1,4 +1,5 @@
 <script setup>
+import '../plugins/css/product.css'
 import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router';
 import { useCartState } from '../uiComponents/state';
@@ -32,20 +33,18 @@ const nextHandler = () => {
 
 const selectedOption = ref(1);
 watch(selectedOption, (newVal) => {
-    if (newVal == 1) {
-        productDetail.value.price = "50.00";
-        console.log(newVal);
-    } else if (newVal == 2) {
-        productDetail.value.price = "45.00";
-    } else if (newVal == 3) {
-        productDetail.value.price = "42.50";
+    const optionText = productDetail.value.option[newVal];
+    const match = optionText.match(/NT\$([0-9]+)/);
+    if (match) {
+        productDetail.value.price = match[1]; // 取得價格部分
     }
-})
+
+});
 
 
 const cartItems = ref([]);
 const addHandler = () => {
-    const currentCart = JSON.parse(sessionStorage.getItem('cart')) || [];
+    const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
     const cartItem = {
         id: currentCart.length + 1,
         category: "subscription",
@@ -55,7 +54,7 @@ const addHandler = () => {
         src: productDetail.value.img
     }
     currentCart.push(cartItem);
-    sessionStorage.setItem('cart', JSON.stringify(currentCart));
+    localStorage.setItem('cart', JSON.stringify(currentCart));
     cartItems.value = currentCart;
     window.dispatchEvent(new Event('storage'));
     store.toggleCart('subscriptionProduct');
@@ -64,10 +63,7 @@ const addHandler = () => {
 onMounted(() => {
     getProductDetail();
 })
-
-
 </script>
-
 <template>
     <div class="container my-5 mx-auto" v-if="productDetail">
         <div class="row">
@@ -76,8 +72,8 @@ onMounted(() => {
                     <div class="row row-cols-2">
                         <div class="col-6">
                             <ol class="breadcrumb">
-                                <li class="breadcrumb-item"><router-link to="/">Home</router-link></li>
-                                <li class="breadcrumb-item"><router-link to="/Subscription">Subscription</router-link>
+                                <li class="breadcrumb-item"><router-link to="/">首頁</router-link></li>
+                                <li class="breadcrumb-item"><router-link to="/Subscription">訂閱方案</router-link>
                                 </li>
                                 <li class="breadcrumb-item active">{{ productDetail.title }}</li>
                             </ol>
@@ -108,11 +104,11 @@ onMounted(() => {
                         <div class="col-md-7">
                             <div class="card-body">
                                 <h5 class="card-title">{{ productDetail.title }}</h5>
-                                <p class="card-text">$ {{ productDetail.price }} Price</p>
+                                <p class="card-text">NTD $ {{ productDetail.price }}</p>
                                 <select class="form-select" v-model="selectedOption">
                                     <option v-for="(option, key) in productDetail.option" :key="key" :value="key">{{
                                         option
-                                        }}
+                                    }}
                                     </option>
                                 </select>
                                 <button type="button" class="btn" @click="addHandler">Add to Cart</button>
@@ -121,7 +117,7 @@ onMounted(() => {
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button"
                                                 data-bs-toggle="collapse" data-bs-target="#flush-collapseOne">
-                                                PACK SIZE
+                                                包裝尺寸
                                             </button>
                                         </h2>
                                         <div id="flush-collapseOne" class="accordion-collapse collapse"
@@ -133,19 +129,19 @@ onMounted(() => {
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button"
                                                 data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo">
-                                                PRODUCT INFO
+                                                產品介紹
                                             </button>
                                         </h2>
                                         <div id="flush-collapseTwo" class="accordion-collapse collapse"
                                             data-bs-parent="#accordionFlushExample">
-                                            <div class="accordion-body">{{ productDetail.productInfo }}</div>
+                                            <div class="accordion-body">{{ productDetail.productinfo }}</div>
                                         </div>
                                     </div>
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button"
                                                 data-bs-toggle="collapse" data-bs-target="#flush-collapseThree">
-                                                RETURN & REFUND POLICY
+                                                退貨與退款政策
                                             </button>
                                         </h2>
                                         <div id="flush-collapseThree" class="accordion-collapse collapse"
@@ -157,7 +153,7 @@ onMounted(() => {
                                         <h2 class="accordion-header">
                                             <button class="accordion-button collapsed" type="button"
                                                 data-bs-toggle="collapse" data-bs-target="#flush-collapseFour">
-                                                SHIPPING INFO
+                                                購買資訊
                                             </button>
                                         </h2>
                                         <div id="flush-collapseFour" class="accordion-collapse collapse"
@@ -174,43 +170,3 @@ onMounted(() => {
         </div>
     </div>
 </template>
-
-<style scoped>
-.breadcrumb a {
-    text-decoration: none;
-}
-
-.breadcrumb a:hover {
-    margin-bottom: 5px;
-    border-bottom: 2px solid var(--font-color);
-}
-
-.card {
-    border: none;
-}
-
-.card-body {
-    margin: 0 50px;
-}
-
-.card-title {
-    font-weight: 700;
-    font-size: 2rem;
-    margin: 20px 0;
-    color: var(--font-color);
-}
-
-.card-text {
-    font-weight: 400;
-    font-size: 1rem;
-    margin: 20px 0;
-}
-
-.btn {
-    background: var(--font-color);
-    color: #fff;
-    width: 100%;
-    border-radius: 20px;
-    margin: 20px 0;
-}
-</style>

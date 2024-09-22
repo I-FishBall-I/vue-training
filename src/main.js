@@ -1,7 +1,5 @@
 import './plugins/css/bootstrap.min.css'
 import './plugins/js/bootstrap.bundle.min.js'
-import './plugins/css/homeStyle.css'
-
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { faCartShopping, faArrowLeft } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'

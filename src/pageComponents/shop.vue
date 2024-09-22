@@ -23,8 +23,8 @@ onMounted(() => {
 <template>
     <div class="container" v-if="products">
         <div class="my-5 title">
-            <h1>Shop Flaves</h1>
-            <p>Cold-pressed, 100% organic, packed with vitamins, nutrients, and natural goodness.</p>
+            <h1>商城-美味果汁</h1>
+            <p>冷壓技術萃取，100%有機，滿載維生素、營養與天然精華，讓您享受純淨的健康飲品。</p>
         </div>
         <div class="row">
             <div class="col-12 col-lg-4" v-for="product in products" :key="product.id">
@@ -34,7 +34,7 @@ onMounted(() => {
                     </div>
                     <div class="txt">
                         <h2>{{ product.title }}</h2>
-                        <p>$  {{ product.price }}</p>
+                        <p>NTD $ {{ product.price }}</p>
                     </div>
                 </router-link>
             </div>
@@ -53,18 +53,22 @@ onMounted(() => {
     font-size: 1rem;
 }
 
-.row img {
+.pic img {
     border-radius: 10px;
 }
 
-.row .txt h2 {
+.pic:hover img {
+    box-shadow: 0 0 15px rgba(61, 90, 35, 0.6);
+}
+
+.txt h2 {
     font-size: 1.6rem;
     font-weight: 700;
     margin: 20px 0;
     color: var(--font-color);
 }
 
-.row .txt p {
+.txt p {
     font-size: 1rem;
     font-weight: 400;
     padding: 0 0 20px 10px;
