@@ -2,56 +2,56 @@
     {
         "id": 1,
         "title": "Green Punch",
-        "price": "6.00",
+        "price": "180",
         "img": "./shop-juice1.jpg",
-        "productInfo":"果汁一  介紹",
-        "policy":"I’m a Return and Refund policy. I’m a great place to let your customers know what to do in case they are dissatisfied with their purchase. Having a straightforward refund orexchange policy is a great way to build trust and reassure your customers that they can buy with confidence.",
-        "shopInfo":"I'm a shipping policy. I'm a great place to add more information about your shipping methods, packaging and cost. Providing straightforward information about your shipping policy is a great way to build trust and reassure your customers that they can buy from you with confidence."
+        "productInfo":"清新綠意滿滿的健康飲品，融合綠色蔬果的精華，富含維生素與抗氧化物，讓您每一口都感受到活力。",
+        "policy":"我們理解您對產品的期望，若您對購買的果汁不滿意，可依照我們的簡單退換貨流程進行處理，讓您購物無憂。",
+        "shopInfo":"我們提供多樣化的配送方式，詳細說明您的配送選項、包裝方式與費用，讓您安心選購。我們致力於讓您的訂單快速、安全地送達。"
     },
     {
         "id": 2,
         "title": "Apple Citrus",
-        "price": "6.00",
+        "price": "190",
         "img": "./shop-juice2.jpg",
-        "productInfo":"果汁二  介紹",
-        "policy":"I’m a Return and Refund policy. I’m a great place to let your customers know what to do in case they are dissatisfied with their purchase. Having a straightforward refund orexchange policy is a great way to build trust and reassure your customers that they can buy with confidence.",
-        "shopInfo":"I'm a shipping policy. I'm a great place to add more information about your shipping methods, packaging and cost. Providing straightforward information about your shipping policy is a great way to build trust and reassure your customers that they can buy from you with confidence."
+        "productInfo":"蘋果與柑橘的完美融合，帶來清新甜美的滋味，滿載維生素C與天然果香，是您的日常能量來源。",
+        "policy":"我們理解您對產品的期望，若您對購買的果汁不滿意，可依照我們的簡單退換貨流程進行處理，讓您購物無憂。",
+        "shopInfo":"我們提供多樣化的配送方式，詳細說明您的配送選項、包裝方式與費用，讓您安心選購。我們致力於讓您的訂單快速、安全地送達。"
     },
     {
         "id": 3,
         "title": "Orange Zest",
-        "price": "6.00",
+        "price": "200",
         "img": "./shop-juice3.jpg",
-        "productInfo":"果汁三  介紹",
-        "policy":"I’m a Return and Refund policy. I’m a great place to let your customers know what to do in case they are dissatisfied with their purchase. Having a straightforward refund orexchange policy is a great way to build trust and reassure your customers that they can buy with confidence.",
-        "shopInfo":"I'm a shipping policy. I'm a great place to add more information about your shipping methods, packaging and cost. Providing straightforward information about your shipping policy is a great way to build trust and reassure your customers that they can buy from you with confidence."
+        "productInfo":"每一口都充滿橙子的鮮活風味，富含維他命C與抗氧化成分，是增強免疫力的絕佳選擇。",
+        "policy":"我們理解您對產品的期望，若您對購買的果汁不滿意，可依照我們的簡單退換貨流程進行處理，讓您購物無憂。",
+        "shopInfo":"我們提供多樣化的配送方式，詳細說明您的配送選項、包裝方式與費用，讓您安心選購。我們致力於讓您的訂單快速、安全地送達。"
     },
     {
         "id": 4,
         "title": "Pink Grapefruit",
-        "price": "6.00",
+        "price": "185",
         "img": "./shop-juice4.jpg",
-        "productInfo":"果汁四  介紹",
-        "policy":"I’m a Return and Refund policy. I’m a great place to let your customers know what to do in case they are dissatisfied with their purchase. Having a straightforward refund orexchange policy is a great way to build trust and reassure your customers that they can buy with confidence.",
-        "shopInfo":"I'm a shipping policy. I'm a great place to add more information about your shipping methods, packaging and cost. Providing straightforward information about your shipping policy is a great way to build trust and reassure your customers that they can buy from you with confidence."
+        "productInfo":"粉紅葡萄柚的酸甜滋味完美結合，低糖高纖，富含維生素C，是清爽又健康的飲品選擇。",
+        "policy":"我們理解您對產品的期望，若您對購買的果汁不滿意，可依照我們的簡單退換貨流程進行處理，讓您購物無憂。",
+        "shopInfo":"我們提供多樣化的配送方式，詳細說明您的配送選項、包裝方式與費用，讓您安心選購。我們致力於讓您的訂單快速、安全地送達。"
     },
     {
         "id": 5,
         "title": "Ginger Tangerine",
-        "price": "6.00",
+        "price": "195",
         "img": "./shop-juice5.jpg",
-        "productInfo":"果汁五  介紹",
-        "policy":"I’m a Return and Refund policy. I’m a great place to let your customers know what to do in case they are dissatisfied with their purchase. Having a straightforward refund orexchange policy is a great way to build trust and reassure your customers that they can buy with confidence.",
-        "shopInfo":"I'm a shipping policy. I'm a great place to add more information about your shipping methods, packaging and cost. Providing straightforward information about your shipping policy is a great way to build trust and reassure your customers that they can buy from you with confidence."
+        "productInfo":"薑與橘子的絕妙搭配，帶來溫暖且提神的風味，是增強免疫力與提振精神的理想選擇。",
+        "policy":"我們理解您對產品的期望，若您對購買的果汁不滿意，可依照我們的簡單退換貨流程進行處理，讓您購物無憂。",
+        "shopInfo":"我們提供多樣化的配送方式，詳細說明您的配送選項、包裝方式與費用，讓您安心選購。我們致力於讓您的訂單快速、安全地送達。"
     },
     {
         "id": 6,
         "title": "Raspberry Lime",
-        "price": "6.00",
+        "price": "190",
         "img": "./shop-juice6.jpg",
-        "productInfo":"果汁六  介紹",
-        "policy":"I’m a Return and Refund policy. I’m a great place to let your customers know what to do in case they are dissatisfied with their purchase. Having a straightforward refund orexchange policy is a great way to build trust and reassure your customers that they can buy with confidence.",
-        "shopInfo":"I'm a shipping policy. I'm a great place to add more information about your shipping methods, packaging and cost. Providing straightforward information about your shipping policy is a great way to build trust and reassure your customers that they can buy from you with confidence."
+        "productInfo":"覆盆子與青檸的絕佳組合，帶來酸甜交織的口感，讓您在每一口都感受到清新與活力。",
+        "policy":"我們理解您對產品的期望，若您對購買的果汁不滿意，可依照我們的簡單退換貨流程進行處理，讓您購物無憂。",
+        "shopInfo":"我們提供多樣化的配送方式，詳細說明您的配送選項、包裝方式與費用，讓您安心選購。我們致力於讓您的訂單快速、安全地送達。"
     }
 
 ]

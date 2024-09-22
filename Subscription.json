@@ -2,46 +2,46 @@
     {
         "id": 1,
         "title": "Total Care",
-        "price": "50.00",
+        "price": "4320",
         "img": "./Subscription-juice1.jpg",
         "option": {
-            "1":"One-time purchase $50.00",
-            "2":"3 months Subscribe $45.00 every month for 3 months",
-            "3":"6 months Subscribe $42.50every month for 6 months"
+            "1":"單次購買 NT$4320",
+            "2":"3個月訂閱 每月NT$3888，連續3個月",
+            "3":"6個月訂閱 每月NT$3672，連續6個月"
         },
-        "packSize": "24 Pack",
-        "productInfo":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
-        "policy":"I’m a Return and Refund policy. I’m a great place to let your customers know what to do in case they are dissatisfied with their purchase. Having a straightforward refund or exchange policy is a great way to build trust and reassure your customers that they can buy with confidence.",
-        "shopInfo":"I'm a shipping policy. I'm a great place to add more information about your shipping methods, packaging and cost. Providing straightforward information about your shipping policy is a great way to build trust and reassure your customers that they can buy from you with confidence."
+        "packSize": "24瓶裝",
+        "productInfo":"這款全面呵護果汁套餐結合了多種天然水果精華，為您提供日常所需的營養補充。每瓶果汁均富含維生素和抗氧化成分，讓您全天充滿能量。適合需要持續補充活力的人群，無論是單次購買還是訂閱服務，都能滿足您的需求。",
+        "policy":"我們理解您對產品的期望，若您對購買的果汁不滿意，可依照我們的簡單退換貨流程進行處理，讓您購物無憂。",
+        "shopInfo":"我們提供多樣化的配送方式，詳細說明您的配送選項、包裝方式與費用，讓您安心選購。我們致力於讓您的訂單快速、安全地送達。"
     },
     {
         "id": 2,
         "title": "Detox Plan",
-        "price": "30.00",
+        "price": "3600",
         "img": "./Subscription-juice2.jpg",
         "option": {
-            "1":"One-time purchase $50.00",
-            "2":"3 months Subscribe $45.00 every month for 3 months",
-            "3":"6 months Subscribe $42.50every month for 6 months"
+            "1":"單次購買 NT$3600",
+            "2":"3個月訂閱 每月NT$3240，連續3個月",
+            "3":"6個月訂閱 每月NT$3060，連續6個月"
         },
-        "packSize": "24 Pack",
-        "product.info":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
-        "policy":"I’m a Return and Refund policy. I’m a great place to let your customers know what to do in case they are dissatisfied with their purchase. Having a straightforward refund or exchange policy is a great way to build trust and reassure your customers that they can buy with confidence.",
-        "shopInfo":"I'm a shipping policy. I'm a great place to add more information about your shipping methods, packaging and cost. Providing straightforward information about your shipping policy is a great way to build trust and reassure your customers that they can buy from you with confidence."
+        "packSize": "24瓶裝",
+        "productinfo":"排毒計劃套餐專為清除體內毒素而設計，選用富含纖維和抗氧化劑的天然水果，有助於提升消化系統健康。長期飲用可以促進新陳代謝，讓身體保持清新、輕盈。選擇這款套餐，讓排毒變得輕鬆簡單。",
+        "policy":"我們理解您對產品的期望，若您對購買的果汁不滿意，可依照我們的簡單退換貨流程進行處理，讓您購物無憂。",
+        "shopInfo":"我們提供多樣化的配送方式，詳細說明您的配送選項、包裝方式與費用，讓您安心選購。我們致力於讓您的訂單快速、安全地送達。"
     },
     {
         "id": 3,
-        "title": "Full-Day Cleanses",
-        "price": "40.00",
+        "title": "All-Day Detox",
+        "price": "3840",
         "img": "./Subscription-juice3.jpg",
         "option": {
-            "1":"One-time purchase $50.00",
-            "2":"3 months Subscribe $45.00 every month for 3 months",
-            "3":"6 months Subscribe $42.50every month for 6 months"
+            "1":"單次購買 NT$3840",
+            "2":"3個月訂閱 每月NT$3456，連續3個月",
+            "3":"6個月訂閱 每月NT$3240，連續6個月"
         },
-        "packSize": "24 Pack",        
-        "product.info":"I'm a product detail. I'm a great place to add more information about your product such as sizing, material, care and cleaning instructions. This is also a great space to write what makes this product special and how your customers can benefit from this item.",
-        "policy":"I’m a Return and Refund policy. I’m a great place to let your customers know what to do in case they are dissatisfied with their purchase. Having a straightforward refund or exchange policy is a great way to build trust and reassure your customers that they can buy with confidence.",
-        "shopInfo":"I'm a shipping policy. I'm a great place to add more information about your shipping methods, packaging and cost. Providing straightforward information about your shipping policy is a great way to build trust and reassure your customers that they can buy from you with confidence."
+        "packSize": "24瓶裝",        
+        "productinfo":"全日清潔套餐專為全面排毒和清潔身體而設計，內含多種蔬果成分，每天幫助您輕鬆維持身體健康。這款套餐適合進行短期或長期的清潔計劃，為您的生活注入更多健康元素。",
+        "policy":"我們理解您對產品的期望，若您對購買的果汁不滿意，可依照我們的簡單退換貨流程進行處理，讓您購物無憂。",
+        "shopInfo":"我們提供多樣化的配送方式，詳細說明您的配送選項、包裝方式與費用，讓您安心選購。我們致力於讓您的訂單快速、安全地送達。"
     }
 ]
