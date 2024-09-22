@@ -1,12 +1,71 @@
 <script setup>
+import { ref, onMounted, computed } from 'vue';
+import { useRoute } from 'vue-router';
+import cart from '../uiComponents/cart.vue';
+import { useCartState } from '../uiComponents/state';
+const store = useCartState();
+const route = useRoute();
+const data = ref([]);
+const productDetail = ref(null);
 
+const getProductDetail = async () => {
+    const productId = parseInt(route.query.id); // 從路由參數中獲取商品 id
+    const res = await fetch('productPage.json');
+    const jsondata = await res.json();
+    data.value = jsondata;
+    productDetail.value = data.value.find(product => product.id === productId); // 根據 id 查找對應商品
+    // console.log(productDetail.value);
+};
 
+const prevHandler = () => {
+    if (productDetail.value.id > 1) {
+        const prevId = productDetail.value.id - 1;
+        productDetail.value = data.value.find(product => product.id === prevId);
+        quantity.value = 0
+    }
+}
+const nextHandler = () => {
+    if (productDetail.value.id < 6) {
+        const nextId = productDetail.value.id + 1;
+        productDetail.value = data.value.find(product => product.id === nextId);
+        quantity.value = 0
+    }
+}
+
+const quantity = ref(0)
+const getQuantityData = (event) => {
+    quantity.value = event.target.value
+}
+const isAddToCartDisabled = computed(() => quantity.value <= 0)
+
+const cartItems = ref([]);
+const addCartHandler = () => {
+    const currentCart = JSON.parse(sessionStorage.getItem('cart')) || [];
+    const cartItem = {
+        id: currentCart.length + 1,
+        category:"shop",
+        title: productDetail.value.title,
+        price: productDetail.value.price,
+        quantity: quantity.value,
+        src: productDetail.value.img
+    }
+    currentCart.push(cartItem);
+    sessionStorage.setItem('cart', JSON.stringify(currentCart));
+    cartItems.value = currentCart;
+    window.dispatchEvent(new Event('storage'));
+    quantity.value = 0
+    store.toggleCart('productPage');
+}
+
+onMounted(() => {
+    getProductDetail();
+});
 
 </script>
 
 
 <template>
-    <div class="container my-5 mx-auto">
+    <div class="container my-5 mx-auto" v-if="productDetail">
         <div class="row">
             <div class="col-12">
                 <div class="bread">
@@ -15,19 +74,19 @@
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><router-link to="/" href="#">Home</router-link></li>
                                 <li class="breadcrumb-item"><router-link to="/shop" href="#">Shop</router-link></li>
-                                <li class="breadcrumb-item active">Apple Citrus</li>
+                                <li class="breadcrumb-item active">{{ productDetail.title }}</li>
                             </ol>
                         </div>
                         <div class="col-2 offset-4">
                             <ul class="pagination">
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Previous">
-                                        <span aria-hidden="true">Prev&laquo;</span>
+                                <li class="page-item" @click="prevHandler">
+                                    <a class="page-link">
+                                        <span>Prev&laquo;</span>
                                     </a>
                                 </li>
-                                <li class="page-item">
-                                    <a class="page-link" href="#" aria-label="Next">
-                                        <span aria-hidden="true">Next&raquo;</span>
+                                <li class="page-item" @click="nextHandler">
+                                    <a class="page-link">
+                                        <span>Next&raquo;</span>
                                     </a>
                                 </li>
                             </ul>
@@ -39,17 +98,19 @@
                 <div class="card mb-3" style="max-width:70rem;">
                     <div class="row g-0">
                         <div class="col-md-5">
-                            <img src="/shop-juice1.jpg" class="img-fluid rounded-start">
+                            <img :src="productDetail.img" class="img-fluid rounded-start">
                         </div>
                         <div class="col-md-7">
                             <div class="card-body">
-                                <h5 class="card-title">Apple Citrus</h5>
-                                <p class="card-text">$6.00Price</p>
+                                <h5 class="card-title">{{ productDetail.title }}</h5>
+                                <p class="card-text">{{ productDetail.price }}</p>
                                 <div class="input-group mb-3">
                                     <span class="input-group-text" id="inputGroup-sizing-default">Quantity</span>
-                                    <input type="text" class="form-control">
+                                    <input type="number" min="0" max="10" class="form-control" :value="quantity"
+                                        @input="getQuantityData">
                                 </div>
-                                <button type="button" class="btn">Add to Cart</button>
+                                <button type="button" class="btn" :disabled="isAddToCartDisabled"
+                                    @click="addCartHandler">Add to Cart</button>
                                 <div class="accordion accordion-flush my-5" id="accordionFlushExample">
                                     <div class="accordion-item">
                                         <h2 class="accordion-header">
@@ -60,10 +121,7 @@
                                         </h2>
                                         <div id="flush-collapseOne" class="accordion-collapse collapse"
                                             data-bs-parent="#accordionFlushExample">
-                                            <div class="accordion-body">I'm a product detail. I'm a great place to add
-                                                more information about your product such as sizing, material, care and
-                                                cleaning instructions. This is also a great space to write what makes
-                                                this product special and how your customers can benefit from this item.
+                                            <div class="accordion-body">{{ productDetail.productInfo }}
                                             </div>
                                         </div>
                                     </div>
@@ -76,11 +134,7 @@
                                         </h2>
                                         <div id="flush-collapseTwo" class="accordion-collapse collapse"
                                             data-bs-parent="#accordionFlushExample">
-                                            <div class="accordion-body">I’m a Return and Refund policy. I’m a great
-                                                place to let your customers know what to do in case they are
-                                                dissatisfied with their purchase. Having a straightforward refund or
-                                                exchange policy is a great way to build trust and reassure your
-                                                customers that they can buy with confidence.</div>
+                                            <div class="accordion-body">{{ productDetail.policy }}</div>
                                         </div>
                                     </div>
                                     <div class="accordion-item">
@@ -92,11 +146,7 @@
                                         </h2>
                                         <div id="flush-collapseThree" class="accordion-collapse collapse"
                                             data-bs-parent="#accordionFlushExample">
-                                            <div class="accordion-body">I'm a shipping policy. I'm a great place to add
-                                                more information about your shipping methods, packaging and cost.
-                                                Providing straightforward information about your shipping policy is a
-                                                great way to build trust and reassure your customers that they can buy
-                                                from you with confidence.</div>
+                                            <div class="accordion-body">{{ productDetail.shopInfo }}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -106,6 +156,7 @@
                 </div>
             </div>
         </div>
+        <cart v-show="store.showCart" :cartItem="cartItems" />
     </div>
 </template>
 

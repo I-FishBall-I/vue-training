@@ -1,9 +1,3 @@
-<script setup>
-
-
-</script>
-
-
 <template>
     <section class="container-fluid py-5 main">
         <div class="container">
@@ -23,10 +17,5 @@
             </div>
         </div>
     </section>
-
-
 </template>
 
-<style>
-
-</style>

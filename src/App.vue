@@ -1,4 +1,8 @@
 <script setup>
+import cart from './uiComponents/cart.vue';
+
+import { useCartState } from './uiComponents/state';
+const store = useCartState();
 
 </script>
 
@@ -6,29 +10,23 @@
   <div class="container-fluid text-center py-2 coupon">FREE SHIPPING ON ORDERS OVER $75</div>
   <nav class="navbar navbar-expand-lg">
     <div class="container">
-      <router-link to="/" class="navbar-brand" href="#">pure flave</router-link>
+      <router-link to="/" class="navbar-brand">pure flave</router-link>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0">
           <li class="nav-item">
-            <router-link to="/shop" class="nav-link" href="#">Shop</router-link>
+            <router-link to="/shop" class="nav-link">Shop</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/subscription" class="nav-link" href="#">Subscription</router-link>
+            <router-link to="/subscription" class="nav-link">Subscription</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/about" class="nav-link" href="#">About Us</router-link>
+            <router-link to="/about" class="nav-link">About Us</router-link>
           </li>
           <li class="nav-item">
-            <router-link to="/contact" class="nav-link" href="#">Contact</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/productPage" class="nav-link" href="#">productPage</router-link>
-          </li>
-          <li class="nav-item">
-            <router-link to="/subscriptionProduct" class="nav-link" href="#">SubscriptionProduct</router-link>
+            <router-link to="/contact" class="nav-link">Contact</router-link>
           </li>
         </ul>
         <div>
@@ -36,8 +34,8 @@
             <li class="nav-item">
               <a class="nav-link" href="#">Log In</a>
             </li>
-            <li class="nav-item">
-              <a class="nav-link" href="#"><font-awesome-icon :icon="['fas', 'cart-shopping']" /></a>
+            <li class="nav-item" @click="store.toggleCart('app')">
+              <a class="nav-link"><font-awesome-icon :icon="['fas', 'cart-shopping']" /></a>
             </li>
           </ul>
         </div>
@@ -46,6 +44,7 @@
   </nav>
 
   <div class="content">
+    <cart v-show="store.showCart" />
     <router-view />
   </div>
   <footer class="container-fluid">

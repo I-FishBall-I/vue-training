@@ -1,7 +1,3 @@
-<script setup>
-</script>
-
-
 <template>
     <div class="container">
         <div class="row row-cols-1 row-cols-md-2">
@@ -23,8 +19,6 @@
         </div>
     </div>
 </template>
-
-
 <style scoped>
 .txt h3 {
     font-size: 1.5rem;

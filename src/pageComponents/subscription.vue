@@ -1,11 +1,17 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-import productData from '../data/Subscription.json';
 
 const products = ref([]);
+const getProducts = async () => {
+    const res = await fetch('Subscription.json');
+    const data = await res.json();
+    products.value = data;
+}
+
+
 
 onMounted(() => {
-    products.value = productData
+    getProducts()
 })
 
 
@@ -19,13 +25,16 @@ onMounted(() => {
         </div>
         <div class="row">
             <div class="col-12 col-lg-4" v-for="product in products" :key="product.id">
-                <div class="pic">
-                    <img :src="product.src" class="w-100">
-                </div>
-                <div class="txt">
-                    <h2>{{ product.title }}</h2>
-                    <p>{{ product.price }}</p>
-                </div>
+                <router-link :to="{ name: 'subscriptionProduct', params: { id: product.id } }"
+                    style="text-decoration: none">
+                    <div class="pic">
+                        <img :src="product.img" class="w-100">
+                    </div>
+                    <div class="txt">
+                        <h2>{{ product.title }}</h2>
+                        <p>$  {{ product.price }}</p>
+                    </div>
+                </router-link>
             </div>
         </div>
     </div>
@@ -57,5 +66,6 @@ onMounted(() => {
     font-size: 1rem;
     font-weight: 400;
     padding: 0 0 20px 10px;
+    color: #000;
 }
 </style>

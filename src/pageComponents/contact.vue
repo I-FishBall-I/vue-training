@@ -1,7 +1,3 @@
-<script setup>
-</script>
-
-
 <template>
     <div class="container d-flex align-items-center">
         <div class="row row-cols-1 row-cols-lg-2 ">
