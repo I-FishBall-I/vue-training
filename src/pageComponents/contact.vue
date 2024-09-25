@@ -40,7 +40,7 @@ const sent = (event) => {
                         </div>
                     </div>
                     <div class="col-12 offset-lg-10 mt-4">
-                        <button type="submit" class="btn" @click="sent">送出</button>
+                        <button class="btn" @click="sent">送出</button>
                     </div>
                 </form>
             </div>
