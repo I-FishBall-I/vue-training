@@ -1,7 +1,8 @@
 <script setup>
 import { getCurrentInstance } from 'vue';
 const { proxy } = getCurrentInstance();
-const sent = () => {
+const sent = (event) => {
+    event.preventDefault();
     proxy.$swal.fire({
         position: "center",
         icon: "success",
