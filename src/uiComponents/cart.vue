@@ -23,18 +23,18 @@ const paymentHandler = () => {
 <template>
     <div class="cart" v-show="store.showCart" v-if="cartItems">
         <div class="row">
-            <div class="col-12 z-index-3">
+            <div class="col-12">
                 <button class="order-btn" @click="store.toggleCart('cart')"><font-awesome-icon
                         :icon="['fas', 'arrow-left']" /><span class="ms-3">Order</span></button>
             </div>
             <div class="col-12 sec-title">Shop Flaves</div>
-            <div class="col-3 title">品項</div>
+            <div class="col-4 title">品項</div>
             <div class="col-2 title">數量</div>
             <div class="col-2 title">單價</div>
             <div class="col-2 title">小計</div>
         </div>
         <div class="row my-2" v-for="item in shopItems" :key="item.id">
-            <div class="col-3 cartMenu"><img :src="item.src" class="w-25 mx-2">{{ item.title }}</div>
+            <div class="col-4 cartMenu"><img :src="item.src" class="w-25 mx-2">{{ item.title }}</div>
             <div class="col-2 cartMenu">{{ item.quantity }}</div>
             <div class="col-2 cartMenu">{{ item.price }}</div>
             <div class="col-2 cartMenu">{{ parseInt(item.quantity) * parseInt(item.price) }}</div>
@@ -43,13 +43,13 @@ const paymentHandler = () => {
         </div>
         <div class="row">
             <div class="col-12 sec-title">Subscription</div>
-            <div class="col-3 title">品項</div>
+            <div class="col-4 title">品項</div>
             <div class="col-2 title">數量</div>
             <div class="col-2 title">單價</div>
             <div class="col-2 title">小計</div>
         </div>
         <div class="row my-2" v-for="item in subscriptionItems" :key="item.id">
-            <div class="col-3 cartMenu"><img :src="item.src" class="w-25 mx-2">{{ item.title }}</div>
+            <div class="col-4 cartMenu"><img :src="item.src" class="w-25 mx-2">{{ item.title }}</div>
             <div class="col-2 cartMenu">{{ item.quantity }}</div>
             <div class="col-2 cartMenu">{{ item.price }}</div>
             <div class="col-2 cartMenu">{{ parseInt(item.quantity) * parseInt(item.price) }}</div>
@@ -96,10 +96,13 @@ const paymentHandler = () => {
 .sec-title {
     font-size: 1.5rem;
     font-weight: 700;
-    margin: 10px 0;
+    margin: 30px 0 10px 0;
+    text-align: center;
+    color: var(--font-color);
 }
 
-.cartMenu:not(:first-child) {
+
+.cartMenu {
     display: flex;
     align-items: center;
     justify-content: center;
