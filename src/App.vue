@@ -72,9 +72,11 @@ window.addEventListener('unload', function () {
   </nav>
 
   <div class="content">
-    <cart v-show="store.showCart" class="cartView" />
+    <transition name="cart">
+      <cart v-show="store.showCart" class="cartView" />
+    </transition>
     <router-view v-slot="{ Component }">
-      <transition name="slide-fade">
+      <transition name="component">
         <component :is="Component" />
       </transition>
     </router-view>
@@ -131,11 +133,13 @@ window.addEventListener('unload', function () {
 }
 
 .cartView {
+  height: 75vh;
   position: absolute;
   top: 0;
   right: 0;
   z-index: 9999;
   background: #fff;
+  overflow: hidden auto;
 }
 
 .cart-icon {
@@ -157,16 +161,29 @@ window.addEventListener('unload', function () {
   border-radius: 50%;
 }
 
-.slide-fade-enter-active {
+.component-enter-active {
   transition: all 1s ease-out;
 }
 
-.slide-fade-leave-active {
+.component-leave-active {
   transition: all ease-in;
 }
 
-.slide-fade-enter-from,
-.slide-fade-leave-to {
+.component-enter-from,
+.component-leave-to {
   opacity: 0;
+}
+
+.cart-enter-active {
+  transition: all .5s ease-out;
+}
+
+.cart-leave-active {
+  transition: all ease-in;
+}
+
+.cart-enter-from,
+.cart-leave-to {
+  right: -5%;
 }
 </style>
