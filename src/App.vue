@@ -2,8 +2,35 @@
 import './plugins/css/app.css'
 import cart from './uiComponents/cart.vue';
 import { useCartState } from './uiComponents/state';
+import { getCurrentInstance } from 'vue';
 const store = useCartState();
+const { proxy } = getCurrentInstance();
 
+
+window.addEventListener('keydown', function (event) {
+  if (event.key === 'F5') {
+    event.preventDefault();
+    proxy.$swal.fire({
+      title: '你確定要離開嗎？',
+      text: "未保存的更改將會丟失！",
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: '是，離開',
+      cancelButtonText: '取消'
+    }).then((result) => {
+      if (result.isConfirmed) {
+        localStorage.clear();
+        location.reload();
+      }
+    });
+  }
+});
+window.addEventListener('beforeunload', function (event) {
+  event.preventDefault();
+});
+window.addEventListener('unload', function () {
+  localStorage.clear();
+});
 </script>
 
 <template>
@@ -34,8 +61,9 @@ const store = useCartState();
             <li class="nav-item">
               <a class="nav-link">Log In</a>
             </li>
-            <li class="nav-item" @click="store.toggleCart('app')">
+            <li class="nav-item cart-icon" @click="store.toggleCart('app')">
               <a class="nav-link"><font-awesome-icon :icon="['fas', 'cart-shopping']" /></a>
+              <span v-show="store.cartData.length > 0">{{ store.cartData.length }}</span>
             </li>
           </ul>
         </div>
@@ -44,10 +72,12 @@ const store = useCartState();
   </nav>
 
   <div class="content">
-    <cart v-show="store.showCart" />
-    <transition name="slide-fade">
-      <router-view />
-    </transition>
+    <cart v-show="store.showCart" class="cartView" />
+    <router-view v-slot="{ Component }">
+      <transition name="slide-fade">
+        <component :is="Component" />
+      </transition>
+    </router-view>
   </div>
   <footer class="container-fluid">
     <div class="row footer">
@@ -97,19 +127,46 @@ const store = useCartState();
 <style>
 .content {
   min-height: 100vh;
+  position: relative;
+}
+
+.cartView {
+  position: absolute;
+  top: 0;
+  right: 0;
+  z-index: 9999;
+  background: #fff;
+}
+
+.cart-icon {
+  display: flex;
+  align-items: top;
+  justify-content: center;
+  position: relative;
+  cursor: pointer;
+}
+
+.cart-icon span {
+  width: 20px;
+  height: 20px;
+  font-size: .8rem;
+  text-align: center;
+  line-height: 20px;
+  color: #fff;
+  background: rgba(255, 0, 0, 0.6);
+  border-radius: 50%;
 }
 
 .slide-fade-enter-active {
-  transition: all 0.4s ease-out;
+  transition: all 1s ease-out;
 }
 
 .slide-fade-leave-active {
-  transition: all 0.8s cubic-bezier(1, 0.6, 0.7, 1);
+  transition: all ease-in;
 }
 
 .slide-fade-enter-from,
 .slide-fade-leave-to {
-  transform: translateX(20px);
   opacity: 0;
 }
 </style>

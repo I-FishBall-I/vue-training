@@ -1,6 +1,5 @@
 <script setup>
 import { ref, onMounted } from 'vue'
-
 const products = ref([]);
 const getProducts = async () => {
     const res = await fetch('Subscription.json');
@@ -8,12 +7,9 @@ const getProducts = async () => {
     products.value = data;
 }
 
-
-
 onMounted(() => {
     getProducts()
 })
-
 
 </script>
 

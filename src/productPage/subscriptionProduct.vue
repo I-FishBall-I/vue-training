@@ -2,10 +2,12 @@
 import '../plugins/css/product.css'
 import { ref, onMounted, watch } from 'vue'
 import { useRoute } from 'vue-router';
-import { useCartState } from '../uiComponents/state';
-const store = useCartState();
+import { getCurrentInstance } from 'vue';
+import { useCartState } from '@/uiComponents/state';
 
 const route = useRoute();
+const store = useCartState();
+const { proxy } = getCurrentInstance();
 const data = ref([]);
 const productDetail = ref(null);
 
@@ -41,23 +43,27 @@ watch(selectedOption, (newVal) => {
 
 });
 
+const alert = () => {
+    proxy.$swal.fire({
+        position: "center",
+        icon: "success",
+        title: "已成功加入購物車",
+        showConfirmButton: false,
+        timer: 1500
+    })
+}
 
-const cartItems = ref([]);
 const addHandler = () => {
-    const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
+    alert();
     const cartItem = {
-        id: currentCart.length + 1,
         category: "subscription",
+        id: store.cartData.length + 1,
         title: productDetail.value.title,
         price: productDetail.value.price,
         quantity: 1,
         src: productDetail.value.img
     }
-    currentCart.push(cartItem);
-    localStorage.setItem('cart', JSON.stringify(currentCart));
-    cartItems.value = currentCart;
-    window.dispatchEvent(new Event('storage'));
-    store.toggleCart('subscriptionProduct');
+    store.addToCart(cartItem);
 }
 
 onMounted(() => {

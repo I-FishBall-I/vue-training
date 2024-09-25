@@ -1,39 +1,27 @@
 <script setup>
-import { computed, ref, watch } from 'vue'
-import { useCartState } from '../uiComponents/state';
+import { computed, ref } from 'vue'
+import { useCartState } from '@/uiComponents/state';
 const store = useCartState();
-
-const cartData = ref([]);
-
-const sessionCart = ref(JSON.parse(localStorage.getItem('cart')) || []);
-
-watch(sessionCart, (newVal) => {
-    cartData.value = newVal;
-});
-
-// 監控 localStorage 並更新 sessionCart
-window.addEventListener('storage', () => {
-    const updatedCart = JSON.parse(localStorage.getItem('cart') || []);
-    sessionCart.value = updatedCart;
-});
+const cartItems = ref([]);
 
 const shopItems = computed(() => {
-    return cartData.value.filter(item => item.category === "shop");
+    return store.cartData.filter(item => item.category === "shop");
 })
 const subscriptionItems = computed(() => {
-    return cartData.value.filter(item => item.category === "subscription");
+    return store.cartData.filter(item => item.category === "subscription");
 })
 
+const deleteItem = (id) => {
+    store.deleteItem(id);
+}
 
-const deleteItem = async (id) => {
-    cartData.value = cartData.value.filter(item => item.id !== id);
-    localStorage.setItem('cart', JSON.stringify(cartData.value));
-    window.dispatchEvent(new Event('storage'));
+const paymentHandler = () => {
+    store.toggleCart('payment');
 }
 
 </script>
 <template>
-    <div class="cart" v-show="store.showCart" v-if="cartData">
+    <div class="cart" v-show="store.showCart" v-if="cartItems">
         <div class="row">
             <div class="col-12 z-index-3">
                 <button class="order-btn" @click="store.toggleCart('cart')"><font-awesome-icon
@@ -70,23 +58,21 @@ const deleteItem = async (id) => {
         </div>
         <div class="row">
             <div class="col-12 total-price">
-                <span>Total $ {{ cartData.reduce((total, item) => total + parseInt(item.price) *
+                <span>Total $ {{ store.cartData.reduce((total, item) => total + parseInt(item.price) *
                     parseInt(item.quantity), 0) }}</span>
             </div>
-            <div class="col-12"><button class="btn btn-success w-100">前往付款</button></div>
+            <div class="col-12"><button class="btn btn-success w-100" @click="paymentHandler">前往付款</button></div>
         </div>
     </div>
 </template>
 
 <style scoped>
 .cart {
-    position: fixed;
-    top: 14%;
-    right: 0;
     z-index: 9999;
     border: 3px solid #f9f9f9;
-    box-shadow: 0 5px 5px 0 rgba(0, 0, 0, 0.2);
-    background: #fff;
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+    background: linear-gradient(145deg, #ffffff, #e6e6e6);
+    padding: 10px;
 }
 
 .order-btn {

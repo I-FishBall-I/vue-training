@@ -1,11 +1,13 @@
 <script setup>
 import '../plugins/css/product.css'
 import { ref, onMounted, computed } from 'vue';
-import cart from '../uiComponents/cart.vue';
 import { useRoute } from 'vue-router';
 import { useCartState } from '../uiComponents/state';
-const store = useCartState();
+import { getCurrentInstance } from 'vue';
+
 const route = useRoute();
+const store = useCartState();
+const { proxy } = getCurrentInstance();
 const data = ref([]);
 const productDetail = ref(null);
 
@@ -35,29 +37,33 @@ const nextHandler = () => {
 
 const quantity = ref(0)
 const getQuantityData = (event) => {
-    quantity.value = event.target.value
+    quantity.value = event.target.value.replace(/^0+/, '');
 }
 const isAddToCartDisabled = computed(() => quantity.value <= 0)
 
-const cartItems = ref([]);
+const alert = () => {
+    proxy.$swal.fire({
+        position: "center",
+        icon: "success",
+        title: "已成功加入購物車",
+        showConfirmButton: false,
+        timer: 1500
+    })
+}
+
 const addCartHandler = () => {
-    const currentCart = JSON.parse(localStorage.getItem('cart')) || [];
+    alert();
     const cartItem = {
-        id: currentCart.length + 1,
         category: "shop",
+        id: store.cartData.length + 1,
         title: productDetail.value.title,
         price: productDetail.value.price,
         quantity: quantity.value,
         src: productDetail.value.img
     }
-    currentCart.push(cartItem);
-    localStorage.setItem('cart', JSON.stringify(currentCart));
-    cartItems.value = currentCart;
-    window.dispatchEvent(new Event('storage'));
+    store.addToCart(cartItem);
     quantity.value = 0
-    store.toggleCart('productPage');
 }
-
 onMounted(() => {
     getProductDetail();
 });
@@ -67,7 +73,7 @@ onMounted(() => {
         <div class="row">
             <div class="col-12">
                 <div class="bread">
-                    <div class="row">
+                    <div class="row row-cols-2">
                         <div class="col-6">
                             <ol class="breadcrumb">
                                 <li class="breadcrumb-item"><router-link to="/" href="#">首頁</router-link></li>
@@ -75,7 +81,7 @@ onMounted(() => {
                                 <li class="breadcrumb-item active">{{ productDetail.title }}</li>
                             </ol>
                         </div>
-                        <div class="col-2 offset-4">
+                        <div class="col-2 offset-1 offset-lg-4">
                             <ul class="pagination">
                                 <li class="page-item" @click="prevHandler">
                                     <a class="page-link">
@@ -154,6 +160,5 @@ onMounted(() => {
                 </div>
             </div>
         </div>
-        <cart v-show="store.showCart" :cartItem="cartItems" />
     </div>
 </template>

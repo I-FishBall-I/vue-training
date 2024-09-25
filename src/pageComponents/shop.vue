@@ -1,9 +1,5 @@
 <script setup>
-
 import { ref, onMounted } from 'vue'
-
-
-
 const products = ref([]);
 
 const getProducts = async () => {
@@ -15,8 +11,6 @@ const getProducts = async () => {
 onMounted(() => {
     getProducts();
 });
-
-
 
 </script>
 

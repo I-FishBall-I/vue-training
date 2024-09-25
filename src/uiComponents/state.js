@@ -2,20 +2,34 @@ import { defineStore } from 'pinia'
 import { ref } from 'vue'
 
 export const useCartState = defineStore('cart', () => {
+  const cartData = ref([])
   const showCart = ref(false)
-  const active = ref(null) // 用來記錄當前開啟的來源
+  const active = ref(null)
 
   const toggleCart = (source) => {
-    if (active.value === source) {
-      // 如果當前來源與點擊的來源相同，則關閉購物車
+    if (showCart.value || active.value === source) {
       showCart.value = false
       active.value = null
+      // console.log(showCart.value);
     } else {
-      // 否則，開啟該來源並關閉其他來源
       showCart.value = true
       active.value = source
+      // console.log(showCart.value);
     }
   }
 
-  return { showCart, active, toggleCart }
+  const addToCart = (currentCart) => {
+    cartData.value.push(currentCart)
+    localStorage.setItem('cart', JSON.stringify(currentCart))
+  }
+
+  const deleteItem = (id) => {
+    cartData.value = cartData.value.filter((item) => item.id !== id)
+    localStorage.setItem('cart', JSON.stringify(cartData.value))
+    if (cartData.value.length == 0) {
+      showCart.value = false
+    }
+  }
+
+  return { showCart, toggleCart, cartData, addToCart, deleteItem }
 })

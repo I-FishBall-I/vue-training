@@ -29,9 +29,11 @@
   text-shadow: 0 5px 10px var(--font-color);
   margin-right: 40px;
 }
+
 .navbar-brand:hover {
   color: var(--font-color);
 }
+
 .navbar-nav li {
   margin: 0 20px;
 }
@@ -39,7 +41,6 @@
   text-decoration: none;
   font-weight: 600;
   position: relative;
-  
 }
 .navbar-nav li a::after {
   content: '';
@@ -49,7 +50,7 @@
   position: absolute;
   left: 0;
   bottom: 0;
-  transition: width .5s;
+  transition: width 0.5s;
 }
 .navbar-nav li:hover a::after {
   content: '';
