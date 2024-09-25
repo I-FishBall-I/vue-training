@@ -58,9 +58,9 @@ window.addEventListener('unload', function () {
         </ul>
         <div>
           <ul class="navbar-nav mb-lg-0">
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link">Log In</a>
-            </li>
+            </li> -->
             <li class="nav-item cart-icon" @click="store.toggleCart('app')">
               <a class="nav-link"><font-awesome-icon :icon="['fas', 'cart-shopping']" /></a>
               <span v-show="store.cartData.length > 0">{{ store.cartData.length }}</span>

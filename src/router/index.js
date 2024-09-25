@@ -1,12 +1,13 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
 
-import Home from '../pageComponents/home.vue'
-import Shop from '../pageComponents/shop.vue'
-import subscription from '../pageComponents/subscription.vue'
-import About from '../pageComponents/about.vue'
-import Contact from '../pageComponents/contact.vue'
-import productPage from '../productPage/productPage.vue'
-import subscriptionProduct from '../productPage/subscriptionProduct.vue'
+import Home from '@/pageComponents/home.vue'
+import Shop from '@/pageComponents/shop.vue'
+import subscription from '@/pageComponents/subscription.vue'
+import About from '@/pageComponents/about.vue'
+import Contact from '@/pageComponents/contact.vue'
+import productPage from '@/productPage/productPage.vue'
+import subscriptionProduct from '@/productPage/subscriptionProduct.vue'
+import pay from '@/uiComponents/pay.vue'
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -46,6 +47,11 @@ const router = createRouter({
       path: '/subscriptionProduct:id',
       name: 'subscriptionProduct',
       component: subscriptionProduct
+    },
+    {
+      path: '/pay',
+      name: 'pay',
+      component: pay
     },
     {
       name: '404',

@@ -1,3 +1,16 @@
+<script setup>
+import { getCurrentInstance } from 'vue';
+const { proxy } = getCurrentInstance();
+const sent = () => {
+    proxy.$swal.fire({
+        position: "center",
+        icon: "success",
+        title: "謝謝指教，我們將會持續改進！",
+        showConfirmButton: false,
+        timer: 2000
+    });
+}
+</script>
 <template>
     <div class="container d-flex align-items-center">
         <div class="row row-cols-1 row-cols-lg-2 ">
@@ -11,22 +24,22 @@
             <div class="col-12 col-lg-7 offset-lg-1">
                 <form class="row g-3">
                     <div class="col-md-12">
-                        <label for="inputEmail4" class="form-label">姓名</label>
-                        <input type="email" class="form-control" id="inputEmail4">
+                        <label for="inputName" class="form-label">姓名</label>
+                        <input type="text" class="form-control" id="inputName">
                     </div>
                     <div class="col-12">
-                        <label for="inputAddress" class="form-label">E-mail</label>
-                        <input type="text" class="form-control" id="inputMail" placeholder="test@example.com">
+                        <label for="inputMail" class="form-label">E-mail</label>
+                        <input type="email" class="form-control" id="inputMail" placeholder="test@example.com">
                     </div>
                     <div class="col-12">
                         <div class="form-floating">
-                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea2"
+                            <textarea class="form-control" placeholder="Leave a comment here" id="floatingTextarea"
                                 style="height: 100px"></textarea>
-                            <label for="floatingTextarea2">意見回饋</label>
+                            <label for="floatingTextarea">意見回饋</label>
                         </div>
                     </div>
                     <div class="col-12 offset-lg-10 mt-4">
-                        <button type="submit" class="btn">送出</button>
+                        <button type="submit" class="btn" @click="sent">送出</button>
                     </div>
                 </form>
             </div>
