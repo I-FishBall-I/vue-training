@@ -1,9 +1,8 @@
 <script setup>
 import '../plugins/css/product.css'
-import { ref, onMounted, computed } from 'vue';
+import { ref, onMounted, computed, getCurrentInstance } from 'vue';
 import { useRoute } from 'vue-router';
 import { useCartState } from '../uiComponents/state';
-import { getCurrentInstance } from 'vue';
 
 const route = useRoute();
 const store = useCartState();
@@ -11,6 +10,7 @@ const { proxy } = getCurrentInstance();
 const data = ref([]);
 const productDetail = ref(null);
 
+// 取得商品資料
 const getProductDetail = async () => {
     const productId = parseInt(route.query.id); // 從路由參數中獲取商品 id
     const res = await fetch('productPage.json');
@@ -20,6 +20,7 @@ const getProductDetail = async () => {
     // console.log(productDetail.value);
 };
 
+//上一筆資料
 const prevHandler = () => {
     if (productDetail.value.id > 1) {
         const prevId = productDetail.value.id - 1;
@@ -27,6 +28,7 @@ const prevHandler = () => {
         quantity.value = 0
     }
 }
+//下一筆資料
 const nextHandler = () => {
     if (productDetail.value.id < 6) {
         const nextId = productDetail.value.id + 1;
@@ -34,11 +36,12 @@ const nextHandler = () => {
         quantity.value = 0
     }
 }
-
+//更新input的數量
 const quantity = ref(0)
 const getQuantityData = (event) => {
     quantity.value = event.target.value.replace(/^0+/, '');
 }
+//當發生變化時時檢視
 const isAddToCartDisabled = computed(() => quantity.value <= 0)
 
 const alert = () => {
@@ -50,9 +53,10 @@ const alert = () => {
         timer: 1500
     })
 }
-
+//新增產品資料進購物車
 const addCartHandler = () => {
     alert();
+    //回傳產品的參數
     const cartItem = {
         category: "shop",
         id: store.cartData.length + 1,
@@ -61,9 +65,11 @@ const addCartHandler = () => {
         quantity: quantity.value,
         src: productDetail.value.img
     }
+    //傳進購物車
     store.addToCart(cartItem);
     quantity.value = 0
 }
+//在網頁載入時執行讀取資料
 onMounted(() => {
     getProductDetail();
 });

@@ -1,8 +1,7 @@
 <script setup>
 import '../plugins/css/product.css'
-import { ref, onMounted, watch } from 'vue'
+import { ref, onMounted, watch, getCurrentInstance} from 'vue'
 import { useRoute } from 'vue-router';
-import { getCurrentInstance } from 'vue';
 import { useCartState } from '@/uiComponents/state';
 
 const route = useRoute();
@@ -10,9 +9,9 @@ const store = useCartState();
 const { proxy } = getCurrentInstance();
 const data = ref([]);
 const productDetail = ref(null);
-
+// 取得商品資料
 const getProductDetail = async () => {
-    const productId = parseInt(route.params.id); // 從路由參數中獲取商品 id 
+    const productId = parseInt(route.query.id); // 從路由參數中獲取商品 id 
     const res = await fetch('Subscription.json');
     const jsondata = await res.json();
     data.value = jsondata;
@@ -20,27 +19,32 @@ const getProductDetail = async () => {
     // console.log(productDetail.value);
 }
 
+//上一筆資料
 const prevHandler = () => {
     if (productDetail.value.id > 1) {
         const prevId = productDetail.value.id - 1;
         productDetail.value = data.value.find(product => product.id === prevId);
+        selectedOption.value = 1;
     }
 }
+
+//下一筆資料
 const nextHandler = () => {
     if (productDetail.value.id < 3) {
         const nextId = productDetail.value.id + 1;
         productDetail.value = data.value.find(product => product.id === nextId);
+        selectedOption.value = 1;
     }
 }
 
+//取得第一筆option的資料使用正則顯示金額的部分
 const selectedOption = ref(1);
+//使用監聽取得選擇的option再取出金額
 watch(selectedOption, (newVal) => {
-    const optionText = productDetail.value.option[newVal];
-    const match = optionText.match(/NT\$([0-9]+)/);
+    const match = productDetail.value.option[newVal].match(/NT\$([0-9]+)/);
     if (match) {
         productDetail.value.price = match[1]; // 取得價格部分
     }
-
 });
 
 const alert = () => {
@@ -52,9 +56,10 @@ const alert = () => {
         timer: 1500
     })
 }
-
+//新增產品資料進購物車
 const addHandler = () => {
     alert();
+    //回傳產品的參數
     const cartItem = {
         category: "subscription",
         id: store.cartData.length + 1,
@@ -65,7 +70,7 @@ const addHandler = () => {
     }
     store.addToCart(cartItem);
 }
-
+//在網頁載入時執行讀取資料
 onMounted(() => {
     getProductDetail();
 })

@@ -44,9 +44,10 @@ const router = createRouter({
       props: route => ({ id: route.query.id })
     },
     {
-      path: '/subscriptionProduct:id',
+      path: '/subscriptionProduct',
       name: 'subscriptionProduct',
-      component: subscriptionProduct
+      component: subscriptionProduct,
+      props: route => ({ id: route.query.id })
     },
     {
       path: '/pay',

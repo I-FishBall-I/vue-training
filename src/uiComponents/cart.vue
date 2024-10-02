@@ -15,8 +15,6 @@ const deleteItem = (id) => {
     store.deleteItem(id);
 }
 
-
-
 </script>
 <template>
     <div class="cart" v-show="store.showCart" v-if="cartItems">

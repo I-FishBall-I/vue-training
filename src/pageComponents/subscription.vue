@@ -21,7 +21,7 @@ onMounted(() => {
         </div>
         <div class="row">
             <div class="col-12 col-lg-4" v-for="product in products" :key="product.id">
-                <router-link :to="{ name: 'subscriptionProduct', params: { id: product.id } }"
+                <router-link :to="{ name: 'subscriptionProduct', query: { id: product.id } }"
                     style="text-decoration: none">
                     <div class="pic">
                         <img :src="product.img" class="w-100">

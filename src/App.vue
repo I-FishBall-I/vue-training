@@ -6,7 +6,7 @@ import { getCurrentInstance } from 'vue';
 const store = useCartState();
 const { proxy } = getCurrentInstance();
 
-
+//當使用者按下F5時判斷是或否,是就清空購物車否不做任何事
 window.addEventListener('keydown', function (event) {
   if (event.key === 'F5') {
     event.preventDefault();
@@ -25,9 +25,11 @@ window.addEventListener('keydown', function (event) {
     });
   }
 });
+//阻止使用者按下瀏覽器的重整
 window.addEventListener('beforeunload', function (event) {
   event.preventDefault();
 });
+//當重整清空購物車
 window.addEventListener('unload', function () {
   localStorage.clear();
 });
@@ -128,7 +130,6 @@ window.addEventListener('unload', function () {
 
 <style>
 .content {
-  min-height: 100vh;
   position: relative;
 }
 

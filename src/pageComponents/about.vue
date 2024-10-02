@@ -19,6 +19,11 @@
     </div>
 </template>
 <style scoped>
+.container{
+    height: 100vh;
+    display: flex;
+    align-items: center;
+}
 .txt h3 {
     font-size: 1.5rem;
     color: var(--font-color);
