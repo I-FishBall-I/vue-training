@@ -9,25 +9,29 @@ const { proxy } = getCurrentInstance();
 //當使用者按下F5時判斷是或否,是就清空購物車否不做任何事
 window.addEventListener('keydown', function (event) {
   if (event.key === 'F5') {
-    event.preventDefault();
-    proxy.$swal.fire({
-      title: '你確定要離開嗎？',
-      text: "未保存的更改將會丟失！",
-      icon: 'warning',
-      showCancelButton: true,
-      confirmButtonText: '是，離開',
-      cancelButtonText: '取消'
-    }).then((result) => {
-      if (result.isConfirmed) {
-        localStorage.clear();
-        location.reload();
-      }
-    });
+    if (localStorage.length > 0) {
+      event.preventDefault();
+      proxy.$swal.fire({
+        title: '你確定要離開嗎？',
+        text: "未保存的更改將會丟失！",
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: '是，離開',
+        cancelButtonText: '取消'
+      }).then((result) => {
+        if (result.isConfirmed) {
+          localStorage.clear();
+          location.reload();
+        }
+      });
+    }
   }
 });
 //阻止使用者按下瀏覽器的重整
 window.addEventListener('beforeunload', function (event) {
-  event.preventDefault();
+  if (localStorage.length > 0) {
+    event.preventDefault();
+  }
 });
 //當重整清空購物車
 window.addEventListener('unload', function () {
@@ -74,15 +78,18 @@ window.addEventListener('unload', function () {
   </nav>
 
   <div class="content">
+    <!-- 購物車 -->
     <transition name="cart">
       <cart v-show="store.showCart" class="cartView" />
     </transition>
+    <!-- 畫面 -->
     <router-view v-slot="{ Component }">
       <transition name="component">
         <component :is="Component" />
       </transition>
     </router-view>
   </div>
+
   <footer class="container-fluid">
     <div class="row footer">
       <div class="col-12 col-lg-3">
