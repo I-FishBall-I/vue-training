@@ -24,14 +24,14 @@
 ![Router設計](./public/router.png)
 
 ## 產品頁及訂閱項目說明
->產品頁<script>
+>產品頁 <script>
 ```
 1. fetch 串接API從本地 JSON 文件中提取產品數據，並利用路由參數中的 id 來找到符合的產品，動態顯示資料。
 2. watch 來接聽route的變化，發生變化時時時的更改顯示的產品內容。
 3. addCartHandler 這函數會紀錄使用者所購買的物品、數量，並將數據透過pinia的方式來管理購物車的資料、狀態。
 ```
 ![產品頁script](./public/product.png)
->產品頁<template>
+>產品頁 <template>
 ```
 1. fetch 串接API從本地 JSON 文件中提取產品數據再用for迴圈來渲染每筆產品在畫面
 2. transition、router-link、router-view當在商店點選產品時會將產品的ID傳入產品頁顯示畫面，
