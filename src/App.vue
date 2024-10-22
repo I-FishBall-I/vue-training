@@ -61,9 +61,6 @@ window.addEventListener('unload', function () {
           <li class="nav-item">
             <router-link to="/contact" class="nav-link">聯絡我們</router-link>
           </li>
-          <!-- <li class="nav-item">
-            <router-link to="/test" class="nav-link">聯絡我們1</router-link>
-          </li> -->
         </ul>
         <div>
           <ul class="navbar-nav mb-lg-0">
