@@ -1,24 +1,26 @@
 <script setup>
 import '../plugins/css/product.css'
-import { ref, onMounted, computed, getCurrentInstance } from 'vue';
+import { ref, onMounted, computed, getCurrentInstance, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import { useCartState } from '../uiComponents/state';
-
+import { useCartState } from '@/uiComponents/state';
 const route = useRoute();
 const store = useCartState();
 const { proxy } = getCurrentInstance();
 const data = ref([]);
 const productDetail = ref(null);
-
+const productId = ref(null);
 // 取得商品資料
 const getProductDetail = async () => {
-    const productId = parseInt(route.query.id); // 從路由參數中獲取商品 id
     const res = await fetch('productPage.json');
     const jsondata = await res.json();
     data.value = jsondata;
-    productDetail.value = data.value.find(product => product.id === productId); // 根據 id 查找對應商品
+    productDetail.value = data.value.find(product => product.id === productId.value); // 根據 id 查找對應商品
     // console.log(productDetail.value);
 };
+watch(route, () => {
+    productId.value = parseInt(route.params.id)
+    getProductDetail();
+}, { immediate: true });
 
 //上一筆資料
 const prevHandler = () => {

@@ -61,6 +61,9 @@ window.addEventListener('unload', function () {
           <li class="nav-item">
             <router-link to="/contact" class="nav-link">聯絡我們</router-link>
           </li>
+          <!-- <li class="nav-item">
+            <router-link to="/test" class="nav-link">聯絡我們1</router-link>
+          </li> -->
         </ul>
         <div>
           <ul class="navbar-nav mb-lg-0">
@@ -183,15 +186,16 @@ window.addEventListener('unload', function () {
 }
 
 .cart-enter-active {
-  transition: all .5s ease-out;
+  transition: all .5s ease-in;
 }
 
 .cart-leave-active {
-  transition: all ease-in;
+  transition: all .5s ease-out;
 }
 
 .cart-enter-from,
 .cart-leave-to {
-  right: -5%;
+  right: -30%;
+  opacity: 0;
 }
 </style>

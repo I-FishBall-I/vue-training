@@ -1,8 +1,8 @@
 <script setup>
-import router from '@/router';
 import { useCartState } from '@/uiComponents/state';
 import { getCurrentInstance } from 'vue'
-
+import { useRouter } from 'vue-router';
+const router = useRouter();
 const store = useCartState();
 store.showCart = false
 
