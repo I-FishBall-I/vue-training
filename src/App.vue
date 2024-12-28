@@ -1,50 +1,51 @@
 <script setup>
 import './plugins/css/app.css'
-import cart from './uiComponents/cart.vue';
-import { useCartState } from './uiComponents/state';
-import { getCurrentInstance } from 'vue';
-const store = useCartState();
-const { proxy } = getCurrentInstance();
+import cart from './uiComponents/cart.vue'
+import { useCartState } from './uiComponents/state'
+import { getCurrentInstance } from 'vue'
+const store = useCartState()
+const { proxy } = getCurrentInstance()
+
 
 //當使用者按下F5時判斷是或否,是就清空購物車否不做任何事
 window.addEventListener('keydown', function (event) {
   if (event.key === 'F5') {
     if (localStorage.length > 0) {
-      event.preventDefault();
-      proxy.$swal.fire({
-        title: '你確定要離開嗎？',
-        text: "未保存的更改將會丟失！",
-        icon: 'warning',
-        showCancelButton: true,
-        confirmButtonText: '是，離開',
-        cancelButtonText: '取消'
-      }).then((result) => {
-        if (result.isConfirmed) {
-          localStorage.clear();
-          location.reload();
-        }
-      });
+      event.preventDefault()
+      proxy.$swal
+        .fire({
+          title: '你確定要離開嗎？',
+          text: '未保存的更改將會丟失！',
+          icon: 'warning',
+          showCancelButton: true,
+          confirmButtonText: '是，離開',
+          cancelButtonText: '取消'
+        })
+        .then((result) => {
+          if (result.isConfirmed) {
+            localStorage.clear()
+            location.reload()
+          }
+        })
     }
   }
-});
-//阻止使用者按下瀏覽器的重整
-window.addEventListener('beforeunload', function (event) {
-  if (localStorage.length > 0) {
-    event.preventDefault();
-  }
-});
-//當重整清空購物車
-window.addEventListener('unload', function () {
-  localStorage.clear();
-});
+})
+
 </script>
 
 <template>
-  <div class="container-fluid text-center py-2 coupon">🎉 現在購物滿 $499，即可享受免費運送服務！把握機會，立即購買！🚚✨</div>
+  <div class="container-fluid text-center py-2 coupon">
+    🎉 現在購物滿 $499，即可享受免費運送服務！把握機會，立即購買！🚚✨
+  </div>
   <nav class="navbar navbar-expand-lg">
     <div class="container">
       <router-link to="/" class="navbar-brand">pure flave</router-link>
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#navbarSupportedContent"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
@@ -64,9 +65,9 @@ window.addEventListener('unload', function () {
         </ul>
         <div>
           <ul class="navbar-nav mb-lg-0">
-            <!-- <li class="nav-item">
-              <a class="nav-link">Log In</a>
-            </li> -->
+            <li class="nav-item">
+              <!-- <router-link to="/login" class="nav-link" v-if="!login.isLogin">Log In</router-link> -->
+            </li>
             <li class="nav-item cart-icon" @click="store.toggleCart('app')">
               <a class="nav-link"><font-awesome-icon :icon="['fas', 'cart-shopping']" /></a>
               <span v-show="store.cartData.length > 0">{{ store.cartData.length }}</span>
@@ -130,7 +131,6 @@ window.addEventListener('unload', function () {
         </div>
       </div>
     </div>
-
   </footer>
   <div class="text-center py-2 bg-secondary">© 2022, pure flave</div>
 </template>
@@ -161,7 +161,7 @@ window.addEventListener('unload', function () {
 .cart-icon span {
   width: 20px;
   height: 20px;
-  font-size: .8rem;
+  font-size: 0.8rem;
   text-align: center;
   line-height: 20px;
   color: #fff;
@@ -183,11 +183,11 @@ window.addEventListener('unload', function () {
 }
 
 .cart-enter-active {
-  transition: all .5s ease-in;
+  transition: all 0.5s ease-in;
 }
 
 .cart-leave-active {
-  transition: all .5s ease-out;
+  transition: all 0.5s ease-out;
 }
 
 .cart-enter-from,
