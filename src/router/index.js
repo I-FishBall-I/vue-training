@@ -56,24 +56,7 @@ export const createMyRouter = function () {
       {
         path: '/pay',
         name: 'pay',
-        component: pay,
-        beforeEnter: (to, from, next) => {
-          if(sessionStorage.getItem('name') == 'admin'){
-            next()
-          }else{
-            const store = useCartState()
-            store.showCart=false
-            Swal.fire({
-              position: 'center',
-              icon: 'warning',
-              title: '請先登入',
-              showConfirmButton: false,
-              timer: 1500
-            }).then(() => {
-              next({name:'login'})
-            })
-          }
-        }
+        component: pay
       },
       {
         path: '/login',
